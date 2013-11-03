@@ -43,6 +43,9 @@ describe("Chapter 3 Specs", function(){
     it("page 43 - get the length of a string", function(){
       var string_of_3_letters = "abc";
       expect(string_of_3_letters.length).toBe(3); 
+      
+      var empty_string = "";
+      expect(empty_string.length).toBe(0);
     });  
     
     describe("page 43 - toString() conversions", function(){
