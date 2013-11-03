@@ -1,19 +1,24 @@
 // chapter 4 tests
 //
 
-function Example(){
-};
-
-Example.prototype.tester = true;
-
 describe("Chapter 4 Specs", function(){
-  var example;
   
-  beforeEach(function(){
-    example = new Example();
+  describe("page 86 - copying values", function(){
+    describe("primatives", function(){});
+    describe("references", function(){});
   });
-  
-  it("Example.tester should true", function(){
-    expect(example.tester).toBe(true);
-  });
+ 
+  describe("page 88 - passing aruments", function(){
+   describe("show that arguments are passed by value", function(){});
+   describe("show how objects are treated when passed by value", function(){});
+ });
+ 
+ describe("page 89 - demonstrate instanceOf", function(){});
+
+ describe("page 90 - Execution and Context Scope", function(){
+   describe("show function can access variables in the parent context", function(){});
+   describe("show function's variable definitions have first priority", function(){});
+   describe("show that there are no block-level scopes", function(){});
+ });
+
 })
