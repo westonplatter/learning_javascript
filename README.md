@@ -11,7 +11,7 @@ __Longer Answer:__ This is a compilation of Javascript "code snippets" as I work
 
 #### How to install and use
 
-To get started quick without setting up NodeJS, go to [https://github.com/westonplatter/learning_javascript](https://github.com/westonplatter/learning_javascript), and download the project. There's a button the right side titled, "Download ZIP". Once downloaded to your computer, open the zip file, and find the  `learning_javascript/professional_javascript-zakas/SpecRunner.html`  file, and double click on it. This runs the tests in your browser.
+To get started quick without setting up NodeJS, go to [https://github.com/westonplatter/learning_javascript](https://github.com/westonplatter/learning_javascript), and download the project. There's a button the right side titled, "Download ZIP". Once downloaded to your computer, open the zip file, and find the  `learning_javascript/resources/professional_javascript-zakas/SpecRunner.html`  file, and double click on it. This runs the tests in your browser.
 
 If you want to run tests using NodeJS ...
 
