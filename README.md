@@ -25,6 +25,7 @@ and it's super simple,
 ```sh
 git clone https://github.com/westonplatter/learning_javascript.git
 cd learning_javascript
+npm install -g grunt-cli
 npm install
 npm test
 ```
