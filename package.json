@@ -1,0 +1,29 @@
+{
+  "name": "learning_javascript",
+  "version": "0.0.0",
+  "description": "learn javascript by proving concepts with tests",
+  "main": "README.md",
+  "scripts": {
+    "test": "grunt jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/westonplatter/learning_javascript.git"
+  },
+  "keywords": [
+    "javascript",
+    "learn",
+    "testing",
+    "tdd"
+  ],
+  "author": "Weston Platter",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/westonplatter/learning_javascript/issues"
+  },
+  "dependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-jasmine": "~0.5.2"
+  }
+}
