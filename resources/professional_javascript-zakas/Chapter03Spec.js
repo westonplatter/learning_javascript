@@ -48,7 +48,20 @@ describe("Chapter 3 Specs", function(){
       expect(empty_string.length).toBe(0);
     });  
     
-    describe("page 43 - toString() conversions", function(){
+    describe("page 43 - toString() conversions of non Strings", function(){
+      var number = 11;
+      it("toString() should return base10 string", function() {
+        expect(number.toString()).toBe("11");  
+      });
+      it("toString() with radix 2 should return base2", function() {
+        expect(number.toString(2)).toBe("1011");
+      });
+      it("toString() with radix 11 should return base11", function() {
+        expect(number.toString(11)).toBe("10");
+      });
+      it("toString() with radix 16 should return hexidecimal", function() {
+        expect(number.toString(16)).toBe("b");
+      });
     });
     
     describe("page 44 - String() conversions", function(){
