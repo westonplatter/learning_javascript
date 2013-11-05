@@ -1,8 +1,12 @@
 // chapter 4 tests
-//
 
 describe("Chapter 4 Specs", function(){
   
+  // we need 1 test to make the Jasmine test suite to run.
+  it("pages 85-101", function() {
+    expect(true).toBe(true);
+  });
+    
   describe("page 86 - copying values", function(){
     describe("primatives", function(){});
     describe("references", function(){});
@@ -20,5 +24,6 @@ describe("Chapter 4 Specs", function(){
    describe("show function's variable definitions have first priority", function(){});
    describe("show that there are no block-level scopes", function(){});
  });
+ 
+});
 
-})
