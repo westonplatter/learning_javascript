@@ -34,14 +34,12 @@ npm test
 - [Professional Javascript for Web Developers by Nicholas Zakas](https://github.com/westonplatter/learning_javascript/tree/master/professional_javascript-zakas)
 
 #### Planned resources:  
-- (more to come)
+- Javascript Patterns
 - (open to ideas)
 
 #### Contributions
 
-I'd love your help! 
-
-I'd love any feedback ([open a Github issue!](https://github.com/westonplatter/learning_javascript/issues/new)) - the pros, cons, and everything in between. 
+I'd love your help! ([Open a Github issue](https://github.com/westonplatter/learning_javascript/issues/new)) - the pros, cons, and everything in between. 
 
 I'll make adjustments to make the project more helpful and easier to use as I get input.
 
