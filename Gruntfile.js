@@ -16,10 +16,11 @@ module.exports = function(grunt){
     }
   });
   
-  grunt.loadNpmTasks('grunt-contrib-jasmine');  
-  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks("grunt-contrib-jasmine");  
+  grunt.loadNpmTasks("grunt-contrib-watch");
   
-  grunt.registerTask('default', ["jasmine"]);
+  grunt.registerTask("test", ["default"]);
+  grunt.registerTask("default", ["jasmine"]);
 };
 
 
