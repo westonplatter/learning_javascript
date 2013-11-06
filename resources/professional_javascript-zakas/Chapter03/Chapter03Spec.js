@@ -7,12 +7,32 @@ describe("Chapter 3 Specs", function(){
     
     // test by creating variable, then checking "typeof" for that variable
     
-    xit("Undefined", function(){});
-    xit("Boolean",  function(){});
-    xit("String", function(){});
-    xit("Number", function(){});
-    xit("Object", function(){});
-    xit("Function", function(){});
+    it("Undefined", function(){
+      expect(typeof(undefined)).toBe("undefined");
+    });
+    it("Boolean",  function(){
+      var isBoolean = true;
+      expect(typeof(isBoolean)).toBe("boolean");
+    });
+    it("String", function(){
+      var name = "John Doe";
+      expect(typeof(name)).toBe("string");
+    });
+    it("Number", function(){
+      var age = 36;
+      expect(typeof(age)).toBe("number");
+    });
+    it("Object", function(){
+      var person = new Object();
+      expect(typeof(person)).toBe("object");
+    });
+    it("Function", function(){
+      function isOld(age)
+      {
+        alert("Dude you're aging!");
+      }
+      expect(typeof(isOld)).toBe("function");
+    });
   });
   
   describe("apply use strict when declaring variables", function(){
