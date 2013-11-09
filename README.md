@@ -1,7 +1,7 @@
 learning_javascript
 ===================
 
-[![Build Status](https://travis-ci.org/westonplatter/learning_javascript.png)](https://travis-ci.org/westonplatter/learning_javascript)
+[![Build Status](https://travis-ci.org/denvercodeclub/learning_javascript.png?branch=master)](https://travis-ci.org/denvercodeclub/learning_javascript)
 
 #### What is this?
 
@@ -31,25 +31,28 @@ Download the project ([click here](https://github.com/denvercodeclub/learning_ja
 3. Shell Commands
 
 ```sh
-git clone https://github.com/westonplatter/learning_javascript.git
+git clone https://github.com/denvercodeclub/learning_javascript.git
 cd learning_javascript
 npm install -g grunt-cli
 npm install
-npm test
+
+# using npm which calls to grunt
+npm test 
+
+# using grunt
+grunt test
 ```
 
 #### Current resources:  
 - [Professional Javascript for Web Developers by Nicholas Zakas](https://github.com/westonplatter/learning_javascript/tree/master/professional_javascript-zakas)
 
 #### Planned resources:  
-- Javascript Patterns
+- Javascript Patterns  
 - (open to ideas)
 
 #### Contributions
 
-I'd love your help! ([Open a Github issue](https://github.com/westonplatter/learning_javascript/issues/new)) - the pros, cons, and everything in between. 
-
-I'll make adjustments to make the project more helpful and easier to use as I get input.
+We'd love your help! [Open a Github issue](https://github.com/westonplatter/learning_javascript/issues/new) about anything. The pros, cons, and everything in between. We'll make adjustments to the project so that the project is as helpful and as easy as possible.   
 
 #### Inspiration
 Credits to the [Denver Code Club](http://www.meetup.com/Denver-Code-Club/) for an awesome group of people to learn from.
