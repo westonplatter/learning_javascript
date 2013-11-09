@@ -81,4 +81,52 @@ describe("Chapter 5 Specs - Reference Types", function(){
     });
   });
   
+  
+  describe("page 128 - the Regex type ", function() {
+    describe("instance properties", function() {
+    });
+    
+    describe("instance methods", function() {
+    });
+    
+    describe("constructor properties", function() {
+    });
+  });
+  
+  describe("page 136 - the Function type", function() {
+    describe("overloading", function() {
+    });
+    
+    describe("declarations vs expressions", function() {
+    });
+    
+    describe("functions as values", function() {
+    });
+    
+    describe("function properties", function() {
+    });
+    
+    describe("function methods", function() {
+    });
+  });
+  
+  describe("page 146 - Primative Wrapper Types", function() {
+    describe("boolean type", function() {
+    });
+    
+    describe("number type", function() {
+    });
+    
+    describe("string type", function() {
+    });
+  });
+  
+  describe("page 161 - Singleton Built-in Object", function() {
+    describe("global object", function() {
+    });  
+    
+    describe("math object", function() {
+    });
+  });
+  
 });
