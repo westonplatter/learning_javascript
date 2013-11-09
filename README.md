@@ -17,7 +17,7 @@ If you want to run tests using NodeJS ...
 
 Install node,  
 - Mac, `brew install nodejs`  
-- Mac alternative, go to http://nodejs.org/dist/v0.10.21/node-v0.10.21.pkg and download file.  Double-click to install.
+- Mac alternative, go to [node mac installer](http://nodejs.org/dist/v0.10.21/node-v0.10.21.pkg) and download file.  Double-click to install.
 - Linux `sudo apt-get install node`  
 - Windows go to [node downloads page](http://nodejs.org/download/)  
 
