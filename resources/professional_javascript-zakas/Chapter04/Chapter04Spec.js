@@ -44,14 +44,16 @@ describe("Chapter 4 Specs", function(){
     expect(FunctionArgumentsExample01()).toEqual(20);
    });
 
-   it("shows how objects are accessed by reference even when \
-      they are passed into a function by value.", function(){
+   it("shows how objects are accessed by reference even when they are passed into a function by value.", function(){
     FunctionArgumentsExample02 = function(){
       function setName(obj) {
           obj.name = "Nicholas";
       }
       
-      var person = new Object();
+      var person = {};
+      // var person = new Object();
+      // this is the same as above.
+      
       setName(person);
       return(person.name);    //"Nicholas"
     }
@@ -88,8 +90,7 @@ describe("Chapter 4 Specs", function(){
     expect(ExecutionContextExample01()).toEqual("Color is now red");
   });
 
-  it("shows how scope chain allows a function to access variables \
-      belonging to parent execution contexts but not vice-versa.",
+  it("shows how scope chain allows a function to access variables belonging to parent execution contexts but not vice-versa.",
       function(){
         ExecutionContextExample02 = function(){
         var color = "blue";
@@ -147,18 +148,26 @@ describe("Chapter 4 Specs", function(){
     expect(ExecutionContextExample03()).toContain("debug=true");
   });
 
-  it("automatically adds declared variables to the most immediate \
-      context available.", function(){
+  it("automatically adds declared variables to the most immediate context available.", function(){
     ExecutionContextExample04 = function(){
       function add(num1, num2) {
-          var sum = num1 + num2;
-          return sum;
+        var sum = num1 + num2;
+        return sum;
       }
-      
+
       var result = add(10, 20);  //30
       return(sum);  //causes an error since sum is not a valid variable
     };
-    expect(function(){ExecutionContextExample04();}).toThrow("Can't find variable: sum");
+
+    var errorMessage;
+
+    try{
+      ExecutionContextExample04();
+    }catch(e){
+      errorMessage = e.message;
+    }
+
+    expect(errorMessage).toContain("sum");
   });
 
   it("automatically adds undeclared variables to the global scope.",
@@ -175,9 +184,7 @@ describe("Chapter 4 Specs", function(){
     expect(ExecutionContextExample05()).toEqual(30);
   });
 
-  it("uses an identifier lookup that starts at the front of \
-      the scope chain and continues up the chain until it \
-      finds a match or reaches the global context.",
+  it("uses an identifier lookup that starts at the front of the scope chain and continues up the chain until it finds a match or reaches the global context.",
       function(){
     ExecutionContextExample06 = function(){
       var color = "blue";
