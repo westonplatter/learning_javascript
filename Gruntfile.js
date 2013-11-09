@@ -13,11 +13,16 @@ module.exports = function(grunt){
           interrupt: true
         },
       },
-    }
+    }, 
+    
+    jshint: {
+      all: ["resources/**/*js"],
+    },
   });
   
   grunt.loadNpmTasks("grunt-contrib-jasmine");  
   grunt.loadNpmTasks("grunt-contrib-watch");
+  grunt.loadNpmTasks('grunt-contrib-jshint');
   
   grunt.registerTask("test", ["default"]);
   grunt.registerTask("default", ["jasmine"]);
