@@ -16,7 +16,12 @@ module.exports = function(grunt){
     }, 
     
     jshint: {
-      all: ["resources/**/*js"],
+      profressional_javascript: {
+        options: {
+          '-W085': true, // allow with statement for Ch3 example
+        },
+        src: ["resources/profressional_javascript**/*js"],
+      },
     },
   });
   

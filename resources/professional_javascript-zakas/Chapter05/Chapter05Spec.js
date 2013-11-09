@@ -48,7 +48,7 @@ describe("Chapter 5 Specs - Reference Types", function(){
       xit("toLocaleString()", function() {});
       xit("toLocaleString() returns each element's toString() result", function() {});
       xit("join() returns comma separated values", function() {});
-      xit("join('?') returns ? separated values")
+      xit("join('?') returns ? separated values", function(){});
     });
     
     describe("stack methods", function() {

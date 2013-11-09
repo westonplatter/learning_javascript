@@ -23,7 +23,7 @@ describe("Chapter 3 Specs", function(){
       expect(typeof(age)).toBe("number");
     });
     it("Object", function(){
-      var person = new Object();
+      var person = {}; // this is the same as, var person = new Object();
       expect(typeof(person)).toBe("object");
     });
     it("Function", function(){
@@ -84,15 +84,11 @@ describe("Chapter 3 Specs", function(){
       
       var fp2 = 0.1;
       expect(fp2).toBe(0.1);
-      
-      var regularInteger = 1.;
-      expect(regularInteger).toBe(1);
     });
     
     it("as NaN", function(){
       var nan = NaN;
-      // see top of page 38
-      expect(nan == NaN).toBe(false);
+      expect(isNaN(nan)).toBe(true);
     });
   });
   
@@ -320,7 +316,7 @@ describe("Chapter 3 Specs", function(){
         var i = 0;
         while (i < 5) {
           i++;
-        };
+        }
         expect(i).toBe(5);
       });
       
@@ -328,7 +324,7 @@ describe("Chapter 3 Specs", function(){
         var i = 0;
         while(false){
           i++;
-        };
+        }
         expect(i).toBe(0);
       });
     });
@@ -373,8 +369,9 @@ describe("Chapter 3 Specs", function(){
           a: "alpha", 
         };
         
+        var x;
         with(hash){
-          var x = a;
+          x = a;
         }
         
         expect(x).toBe("alpha");
@@ -418,13 +415,13 @@ describe("Chapter 3 Specs", function(){
         var robot = function(num1, num2){
           return num1 + num2;
         };
-        var robot = function(num1){
+        robot = function(num1){
           return num1;
-        }
+        };
         
         expect(robot(1, 2)).toBe(1);
       });
     });
   });
 
-})
+});
