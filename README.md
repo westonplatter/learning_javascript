@@ -11,17 +11,24 @@ __Longer Answer:__ This is a compilation of Javascript "code snippets" as I work
 
 #### How to install and use
 
-To get started quick without setting up NodeJS, go to [https://github.com/westonplatter/learning_javascript](https://github.com/westonplatter/learning_javascript), and download the project. There's a button the right side titled, "Download ZIP". Once downloaded to your computer, open the zip file, and find the  `learning_javascript/resources/professional_javascript-zakas/SpecRunner.html`  file, and double click on it. This runs the tests in your browser.
+##### Option 1 - Run tests in browswer
+Download the project ([click here](https://github.com/denvercodeclub/learning_javascript/archive/master.zip)). Open the zip file, and find the  `learning_javascript/resources/professional_javascript-zakas/SpecRunner.html`  file, and double click on it. This runs the tests in your browser. Yay!! You're up and running.  
 
-If you want to run tests using NodeJS ...
 
-Install node,  
-- Mac, `brew install nodejs`  
-- Mac alternative, go to [node mac installer](http://nodejs.org/dist/v0.10.21/node-v0.10.21.pkg) and download file.  Double-click to install.
-- Linux `sudo apt-get install node`  
-- Windows go to [node downloads page](http://nodejs.org/download/)  
 
-and it's super simple,
+##### Option 2 - Run tests via NodeJS
+
+1. Install node,  
+    - Mac, `brew install nodejs` or [node downloads page](http://nodejs.org/download/)  
+    - Linux, `sudo apt-get install node`  
+    - Windows, [node downloads page](http://nodejs.org/download/)  
+
+2. Install git,  
+    - Mac, `brew install git` or [git downloads page](http://git-scm.com/downloads)  
+    - Linux, `sudo apt-get install git`  
+    - Windows, [git downloads page](http://git-scm.com/downloads)  
+
+3. Shell Commands
 
 ```sh
 git clone https://github.com/westonplatter/learning_javascript.git
