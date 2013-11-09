@@ -35,9 +35,9 @@ describe("Chapter 3 Specs", function(){
     });
   });
   
-  describe("apply use strict when declaring variables", function(){
-    xit("page 29 - declare variable without 'use strict'");
-    xit("page 29 - declare variable with 'use strict'");
+  describe("page 29 - apply use strict when declaring variables", function(){
+    xit("withOUT 'use strict'");
+    xit("with'use strict'");
   });
   
   describe("Boolean data types", function(){
