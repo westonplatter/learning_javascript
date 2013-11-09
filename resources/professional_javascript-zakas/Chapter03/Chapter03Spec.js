@@ -40,8 +40,27 @@ describe("Chapter 3 Specs", function(){
     xit("with'use strict'");
   });
   
-  describe("Boolean data types", function(){
-    xit("page 34 - convert boolean types to other data types", function(){});
+  describe("page 34 - Boolean data types", function(){
+    describe("convert Boolean to", function(){
+      it("Boolean results in the same value", function() {
+        expect(Boolean(true)).toBe(true);
+  });
+      it("String is true for non empty strings", function() {
+        expect(Boolean("anything")).toBe(true);
+      });
+      it("String is false for empty strings", function() {
+        expect(Boolean("")).toBe(false);
+      });
+      it("Number is false for zero", function() {
+        expect(Boolean(0)).toBe(false);
+      });
+      it("Number is true for 1", function() {
+        expect(Boolean(1)).toBe(true);
+      });
+      it("Number is false for NaN", function() {
+        expect(Boolean(NaN)).toBe(false);
+      });
+    });
   });
   
   describe("Number data types", function(){
