@@ -51,6 +51,8 @@ describe("Chapter 6 Specs - Object Oriented Programming", function(){
         /*
          * Once configurable is set to false, it cannot be set to true. Throws error.
          *
+         * jascks - updated comment to try out git pull request.
+         *
          * jascks - Well, good idea expecting an error to be thrown, but Chrome, Firefox
          * and npm (via Node.js) all have different messages in the error, which is
          * what toThrow() is trying to match.  So, whether the test passes or fails
