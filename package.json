@@ -4,7 +4,7 @@
   "description": "learn javascript by proving concepts with tests",
   "main": "README.md",
   "scripts": {
-    "test": "grunt jasmine"
+    "test": "grunt test"
   },
   "repository": {
     "type": "git",

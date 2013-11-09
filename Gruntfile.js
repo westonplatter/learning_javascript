@@ -1,6 +1,7 @@
 module.exports = function(grunt){
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'), 
+    
     jasmine: {
       specs: "./resources/**/*.js" 
     },
@@ -16,13 +17,14 @@ module.exports = function(grunt){
     }, 
     
     jshint: {
-      profressional_javascript: {
+      professional_javascript: {
         options: {
           '-W085': true, // allow with statement for Ch3 example
         },
-        src: ["resources/profressional_javascript**/*js"],
+        src: ["resources/professional_javascript-zakas/**/*.js"],
       },
     },
+    
   });
   
   grunt.loadNpmTasks("grunt-contrib-jasmine");  
@@ -30,7 +32,7 @@ module.exports = function(grunt){
   grunt.loadNpmTasks('grunt-contrib-jshint');
   
   grunt.registerTask("test", ["default"]);
-  grunt.registerTask("default", ["jasmine"]);
+  grunt.registerTask("default", ["jasmine", "jshint:professional_javascript"]);
 };
 
 
