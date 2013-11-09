@@ -292,21 +292,212 @@ describe("Chapter 5 Specs - Reference Types", function(){
       };
       expect(ArrayTypeConcatExample01()).toContain("brown");
     });
+
+    it("include a slice() method that takes two arguments, start, and stop. It starts copying from the position of the first argument and stops copying when it reaches the position before the second.",
+      function(){
+      ArrayTypeSliceExample01 = function(){
+        var colors = ["red", "green", "blue", "yellow", "purple"];
+        var colors2 = colors.slice(1);
+        var colors3 = colors.slice(1,4);
+        
+        // alert(colors2);   //green,blue,yellow,purple
+        return(colors3);   //green,blue,yellow
+      };
+      expect(ArrayTypeSliceExample01()).toEqual(["green","blue","yellow"]);
+    });
+
+    it("include a splice() method that's used to insert items into the middle of an array. It can be used to delete, insert, or replace items in an array.",
+      function(){
+      ArrayTypeSpliceExample01 = function(){
+        var colors = ["red", "green", "blue"];
+        var removed = colors.splice(0,1);              //remove the first item
+        // alert(colors);     //green,blue
+        // alert(removed);    //red - one item array
+        
+        removed = colors.splice(1, 0, "yellow", "orange");  //insert two items at position 1
+        // alert(colors);     //green,yellow,orange,blue
+        // alert(removed);    //empty array
+
+        removed = colors.splice(1, 1, "red", "purple");    //insert two values, remove one
+        // alert(colors);     //green,red,purple,orange,blue
+        return(removed);    //yellow - one item array
+      };
+      expect(ArrayTypeSpliceExample01()).toEqual(["yellow"]);
+    });
   });
-});
-  // describe("page 122 - the Date type", function() {
-  //   describe("inherited methods", function() {
-  //   });
-    
-  //   describe("date formatting methods", function() {
-  //   });
-  // });
   
+  describe("page 118 - Array Location Methods", function(){
+
+    it("include an indexOf() method that starts searching from the front of the array and continues to the back. It also includes a lastIndexOf() that searches from back to front.",
+      function(){
+      ArrayIndexOfExample01 = function(){
+        var numbers = [1,2,3,4,5,4,3,2,1];
+        
+        // alert(numbers.indexOf(4));        //3
+        // alert(numbers.lastIndexOf(4));    //5
+        
+        // alert(numbers.indexOf(4, 4));     //5
+        // alert(numbers.lastIndexOf(4, 4)); //3       
+
+        var person = { name: "Nicholas" };
+        var people = [{ name: "Nicholas" }];
+        var morePeople = [person];
+        
+        // alert(people.indexOf(person));     //-1
+        return(morePeople.indexOf(person)); //0
+      };
+      expect(ArrayIndexOfExample01()).toEqual(0);
+    });
+  });
+
+  describe("page 119 - Array Iterative Methods", function(){
+
+    it("include two methods, every(), and sum() which query the array for items matching a criteria. With every(), the function returns true if every item in the array returns true. With some(), the function returns true if a minimum of one item in the array returns true.",
+      function(){
+      ArrayEveryAndSomeExample01 = function(){
+        var numbers = [1,2,3,4,5,4,3,2,1];
+        
+        var everyResult = numbers.every(function(item, index, array){
+            return (item > 2);
+        });
+        
+        // alert(everyResult);       //false
+        
+        var someResult = numbers.some(function(item, index, array){
+            return (item > 2);
+        });
+        
+        return(someResult);       //true
+      };
+      expect(ArrayEveryAndSomeExample01()).toEqual(true);
+    });
+
+    it("include a filter() method that returns an array filled with items that match a criteria.",
+      function(){
+      ArrayFilterExample01 = function(){
+        var numbers = [1,2,3,4,5,4,3,2,1];
+        
+        var filterResult = numbers.filter(function(item, index, array){
+            return (item > 2);
+        });
+        
+        return(filterResult);   //[3,4,5,4,3]
+      };
+      expect(ArrayFilterExample01()).toEqual([3,4,5,4,3]);
+    });
+
+    it("include a map() method that returns an array in which every item is the result of an original item being acted upon.",
+      function(){
+      ArrayMapExample01 = function(){
+        var numbers = [1,2,3,4,5,4,3,2,1];
+        
+        var mapResult = numbers.map(function(item, index, array){
+            return item * 2;
+        });
+        
+        return(mapResult);   //[2,4,6,8,10,8,6,4,2]        
+      };
+      expect(ArrayMapExample01()).toEqual([2,4,6,8,10,8,6,4,2]);
+    });
+  });
   
-  // describe("page 128 - the Regex type ", function() {
-  //   describe("instance properties", function() {
-  //   });
+  describe("Page 121 - Array Reduction Methods", function(){
+
+    it("include a reduce() method which takes four arguments: the previous value, the current value, the item's index, and the array object. They also include a reduceRight() method which visits the array items in the opposite direction. ",
+      function(){
+      ArrayReductionExample01 = function(){
+        var values = [1,2,3,4,5];
+        var sum = values.reduce(function(prev, cur, index, array){
+            return prev + cur;
+        });
+        return(sum);
+      };
+      expect(ArrayReductionExample01()).toEqual(15);
+    });
+  });
+
+  describe("page 122 - the Date type", function() {
+
+    it("includes a date constructor that can be used with the 'new' operator.",
+      function(){
+      DateTypeExample01 = function(){
+      var now = new Date();
+      return(now);
+      };
+      expect(DateTypeExample01()).toBeDefined();
+    });
+
+    it("includes a parse() method that attempts to convert a string into a millisecond representation of a date.",
+      function(){
+      DateTypeExample01 = function(){
+        var someDate = new Date(Date.parse("May 25, 2004"));
+        return(someDate).toString();
+        // needed to add toString() for the test to pass.
+      };
+      expect(DateTypeExample01()).toContain("May");
+    });
+
+    it("includes a UTC() method that is similar to parse() but takes different arguments and creates a date and time in the local time zone, not GMT.",
+      function(){
+      DateTypeConstructorExample01 = function(){
+        //January 1, 2000 at midnight in local time
+        var y2k = new Date(2000, 0);
+        // alert(y2k.toLocaleString());
+        
+        //May 5, 2005 at 5:55:55 PM in local time
+        var allFives = new Date(2005, 4, 5, 17, 55, 55);
+        return(allFives.toLocaleString());
+      };
+      expect(DateTypeConstructorExample01()).toEqual('5/5/2005 5:55:55 PM');
+    });
+
+    it("does not work with valueOf() because the value is over-ridden to return the millisecond representation. i.e. you can not get the value as a string but that does not mean the date type does have value. The values are available internally for comparison purposes.",
+      function(){
+      DateTypeValueOfExample01 = function(){
+        var date1 = new Date(2007, 0, 1);          //January 1, 2007
+        var date2 = new Date(2007, 1, 1);          //February 1, 2007
+        
+        // alert(date1 < date2);  //true
+        return(date1 > date2);  //false
+      };
+      expect(DateTypeValueOfExample01()).toEqual(false);
+    });
+  });
+  
+  describe("page 128 - the Regex type ", function() {
     
+    it("has instance properties - built-in properties that allow you to get information about the pattern. These include:", 
+      function() {
+      RegExpInstancePropertiesExample01 = function(){
+        var pattern1 = /\[bc\]at/i;
+        
+        // alert(pattern1.global);     //false
+        // alert(pattern1.ignoreCase); //true
+        // alert(pattern1.multiline);  //false
+        // alert(pattern1.lastIndex);  //0
+        // alert(pattern1.source);     //"\[bc\]at"
+
+        var pattern2 = new RegExp("\\[bc\\]at", "i");
+        
+        // alert(pattern2.global);     //false
+        // alert(pattern2.ignoreCase); //true
+        // alert(pattern2.multiline);  //false
+        // alert(pattern2.lastIndex);  //0
+        return(pattern2.source);     //"\[bc\]at"
+      };
+    expect(RegExpInstancePropertiesExample01()).toEqual("\\[bc\\]at");
+    });
+    
+    it("global - a bool indicating whether a g flag has been set");
+    it("ignoreCase - a bool indicating whether the i flag has been set");
+    it("multiline - a bool indicating whether the m flag has been set");
+    it("lastIndex - an integer indicating the character position where the next match will be attempted (always 0 to begin)");
+    it("source - the string source of the regular expression.");
+  });
+    
+  describe("page 132 - Regex instance methods", function(){
+
+  });
   //   describe("instance methods", function() {
   //   });
     
@@ -349,4 +540,4 @@ describe("Chapter 5 Specs - Reference Types", function(){
   //   describe("math object", function() {
   //   });
   // });
-
+});
