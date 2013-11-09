@@ -96,16 +96,16 @@ describe("Chapter 3 Specs", function(){
     });
   });
   
-  describe("String data types", function(){
-    it("page 42 - can use single quotes", function(){
+  describe("page 42 - String data types", function(){
+    it("can use single quotes", function(){
       var one = '1';
       expect(one).toBe("1");
     });
-    it("page 42 - can use double quotes", function(){
+    it("can use double quotes", function(){
       var two = "2";
       expect(two).toBe('2');
     });
-    it("page 43 - get the length of a string", function(){
+    it("get the length of a string", function(){
       var string_of_3_letters = "abc";
       expect(string_of_3_letters.length).toBe(3); 
       
