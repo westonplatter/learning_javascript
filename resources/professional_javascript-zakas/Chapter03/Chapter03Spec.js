@@ -63,11 +63,37 @@ describe("Chapter 3 Specs", function(){
     });
   });
   
-  describe("Number data types", function(){
-    xit("page 35 - init integer", function(){});
-    xit("page 35 - init hex", function(){});
-    xit("page 36 - init floating point", function(){});
-    xit("page 37 - init NaN", function(){});
+  describe("page 35 - Number data types", function(){
+    describe("declaring integers", function(){
+      it("as ints", function() {
+        var i = 5;
+        expect(i).toBe(5);
+      });
+      it("as octals (base 8) requires the first char to be 0", function() {
+        var octal = 070;
+        expect(octal).toBe(56);
+      });
+      it("as hexidecimals (base 16) requires the first 2 chars to be 0x", function() {
+        var hex = 0xA;
+        expect(hex).toBe(10);
+      });
+    });
+    it("as floating points requires 1 number to be after the decimal point", function(){
+      var fp1 = 2.1;
+      expect(fp1).toBe(2.1);
+      
+      var fp2 = 0.1;
+      expect(fp2).toBe(0.1);
+      
+      var regularInteger = 1.;
+      expect(regularInteger).toBe(1);
+    });
+    
+    it("as NaN", function(){
+      var nan = NaN;
+      // see top of page 38
+      expect(nan == NaN).toBe(false);
+    });
   });
   
   describe("String data types", function(){
