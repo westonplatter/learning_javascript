@@ -158,7 +158,7 @@ describe("Chapter 4 Specs", function(){
       var result = add(10, 20);  //30
       return(sum);  //causes an error since sum is not a valid variable
     };
-    expect(function(){ExecutionContextExample04();}).toThrow("sum is not defined");
+    expect(function(){ExecutionContextExample04();}).toThrow("Can't find variable: sum");
   });
 
   it("automatically adds undeclared variables to the global scope.",
