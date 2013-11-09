@@ -33,7 +33,8 @@ describe("Chapter 4 Specs", function(){
           num += 10;
           return num;
       }
-      
+    // num is already defined as a variable because it's passed as a function arg
+
       var count = 20
       var result = addTen(count);
       return(count);    //20
@@ -53,7 +54,7 @@ describe("Chapter 4 Specs", function(){
       var person = {};
       // var person = new Object();
       // this is the same as above.
-      
+
       setName(person);
       return(person.name);    //"Nicholas"
     }
