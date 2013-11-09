@@ -10,10 +10,10 @@ describe("Chapter 4 Specs", function(){
   describe("Page 86 - Dynamic Properties", function(){
     it("are allowed with reference values.", function(){
       DynamicPropertiesExample01 = function(){
-        var person = new Object();
+        var person = {};
         person.name = "Nicholas";
         return(person.name);    //"Nicholas"
-      }
+      };
       expect(DynamicPropertiesExample01()).toEqual("Nicholas");
     });
     it("are not allowed with primitive values.", function(){
@@ -21,7 +21,7 @@ describe("Chapter 4 Specs", function(){
         var name = "Nicholas";
         name.age = 27;
         return(name.age);    //undefined  
-      }
+      };
       expect(DynamicPropertiesExample02()).toBeUndefined();
     });
   });
@@ -29,19 +29,19 @@ describe("Chapter 4 Specs", function(){
   describe("Page 88 - Argument Passing", function(){
    it("shows how arguments are passed by value.", function(){
     FunctionArgumentsExample01 = function(){ 
-      function addTen(num) {
-          num += 10;
-          return num;
-      }
-    // num is already defined as a variable because it's passed as a function arg
-
-      var count = 20
+      var addTen = function (num) {
+        // num is already defined as a variable because it's passed as a function arg
+        num += 10;
+        return num;
+      };
+      
+      var count = 20;
       var result = addTen(count);
-      return(count);    //20
-      return(result);   //10
-    // the spec tests for 20 because the second return is  
-    // unreachable after the first return value is found 
-    }
+      
+      return(count);  //20
+      // the spec tests that /count/ is still 20 since functions pass arguments
+      // by value and not by reference.
+    };
     expect(FunctionArgumentsExample01()).toEqual(20);
    });
 
@@ -57,7 +57,7 @@ describe("Chapter 4 Specs", function(){
 
       setName(person);
       return(person.name);    //"Nicholas"
-    }
+    };
     expect(FunctionArgumentsExample02()).toEqual("Nicholas");
    });
  });
@@ -87,7 +87,7 @@ describe("Chapter 4 Specs", function(){
       changeColor();
 
       return("Color is now " + color);
-    }
+    };
     expect(ExecutionContextExample01()).toEqual("Color is now red");
   });
 
@@ -126,26 +126,29 @@ describe("Chapter 4 Specs", function(){
         // Neither 1 nor 2 has access to tempColor.
         // Within swapColors, the variables of 1 and 2 are accessible since
         // they are parent execution contexts.
-      }
+      };
     expect(ExecutionContextExample02()).toEqual("Color is now red");
   });
 
   it("allows for scope chain augmentation.", function(){
     ExecutionContextExample03 = function(){
       function buildUrl() {
+          var locaiton = {};
+          locaiton.href = "http://www.google.com";
           var qs = "?debug=true";
-      
+          var url;
+            
           with(location){
-              var url = href + qs;        
+              url = href + qs;        
           }
-    //Here with() acts on the location object so location itself
-    // is added to the front of the scope chain.   
+          //Here with() acts on the location object so location itself
+          // is added to the front of the scope chain.   
           return url;
       }
 
       var result = buildUrl();
       return(result);
-    }
+    };
     expect(ExecutionContextExample03()).toContain("debug=true");
   });
 
