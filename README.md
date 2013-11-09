@@ -1,7 +1,7 @@
 learning_javascript
 ===================
 
-[![Build Status](https://travis-ci.org/westonplatter/learning_javascript.png)](https://travis-ci.org/westonplatter/learning_javascript)
+[![Build Status](https://travis-ci.org/denvercodeclub/learning_javascript.png?branch=master)](https://travis-ci.org/denvercodeclub/learning_javascript)
 
 #### What is this?
 
