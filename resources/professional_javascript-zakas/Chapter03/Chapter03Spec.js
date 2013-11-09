@@ -44,7 +44,7 @@ describe("Chapter 3 Specs", function(){
     describe("convert Boolean to", function(){
       it("Boolean results in the same value", function() {
         expect(Boolean(true)).toBe(true);
-  });
+      });
       it("String is true for non empty strings", function() {
         expect(Boolean("anything")).toBe(true);
       });
@@ -113,23 +113,41 @@ describe("Chapter 3 Specs", function(){
       expect(empty_string.length).toBe(0);
     });  
     
-    describe("page 43 - toString() conversions of non Strings", function(){
-      var number = 11;
-      it("toString() should return base10 string", function() {
-        expect(number.toString()).toBe("11");  
+    describe("toString() conversion of", function(){
+      it("Boolean returns true or false", function() {
+         var yes = true;
+         expect(yes.toString()).toBe("true");
+         
+         var no = false;
+         expect(no.toString()).toBe("false");
       });
-      it("toString() with radix 2 should return base2", function() {
-        expect(number.toString(2)).toBe("1011");
+      describe("Numbers", function() {
+        it("when integer with no args returns integer", function() {
+          var number = 11;
+          expect(number.toString()).toBe("11");
+        });
+        it("when integer with radix 2 should return base2", function() {
+          var number = 11;
+          expect(number.toString(2)).toBe("1011");
+        });
+        it("toString() with radix 11 should return base11", function() {
+          var number = 11;
+          expect(number.toString(11)).toBe("10");
+        });
+        it("toString() with radix 16 should return hexidecimal", function() {
+          var number = 11;
+          expect(number.toString(16)).toBe("b");
+        });
+      
+        it("when floating point returns decimal", function() {
+          var fp = 2.1;
+          expect(fp.toString()).toBe("2.1");
+        });
+        it("when NaN returns /NaN/", function() {
+          var nan = NaN;
+          expect(nan.toString()).toBe("NaN");
+        });
       });
-      it("toString() with radix 11 should return base11", function() {
-        expect(number.toString(11)).toBe("10");
-      });
-      it("toString() with radix 16 should return hexidecimal", function() {
-        expect(number.toString(16)).toBe("b");
-      });
-    });
-    
-    describe("page 44 - String() conversions", function(){
     });
   });
   
