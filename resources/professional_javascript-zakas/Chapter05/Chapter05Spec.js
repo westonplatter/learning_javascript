@@ -7,7 +7,7 @@ describe("Chapter 5 Specs - Reference Types", function(){
     expect(true).toBe(true);
   });
 
-  describe("Page 104 - the Object type", function(){
+  describe("page 104 - the Object type", function(){
     it("allows you to create an object using an object constructor.",
       function() {
       ObjectTypeExample01 = function(){
@@ -277,9 +277,8 @@ describe("Chapter 5 Specs - Reference Types", function(){
       };
       expect(ArrayTypeExample15()).toEqual([0,1,5,10,15]);
     });
-  });
   
-  describe("page 116 - Array Manipulation Methods", function(){
+  describe(" - Manipulation Methods (page 116)", function(){
 
     it("include a concat() method that allows you to create a new array based on the items in the current array",
       function(){
@@ -326,7 +325,7 @@ describe("Chapter 5 Specs - Reference Types", function(){
     });
   });
   
-  describe("page 118 - Array Location Methods", function(){
+  describe("- Location Methods (page 118)", function(){
 
     it("include an indexOf() method that starts searching from the front of the array and continues to the back. It also includes a lastIndexOf() that searches from back to front.",
       function(){
@@ -350,7 +349,7 @@ describe("Chapter 5 Specs - Reference Types", function(){
     });
   });
 
-  describe("page 119 - Array Iterative Methods", function(){
+  describe("- Iterative Methods (page 119)", function(){
 
     it("include two methods, every(), and sum() which query the array for items matching a criteria. With every(), the function returns true if every item in the array returns true. With some(), the function returns true if a minimum of one item in the array returns true.",
       function(){
@@ -401,7 +400,7 @@ describe("Chapter 5 Specs - Reference Types", function(){
     });
   });
   
-  describe("Page 121 - Array Reduction Methods", function(){
+  describe("- Reduction Methods (page 121)", function(){
 
     it("include a reduce() method which takes four arguments: the previous value, the current value, the item's index, and the array object. They also include a reduceRight() method which visits the array items in the opposite direction. ",
       function(){
@@ -415,6 +414,7 @@ describe("Chapter 5 Specs - Reference Types", function(){
       expect(ArrayReductionExample01()).toEqual(15);
     });
   });
+});
 
   describe("page 122 - the Date type", function() {
 
@@ -466,45 +466,221 @@ describe("Chapter 5 Specs - Reference Types", function(){
   
   describe("page 128 - the Regex type ", function() {
     
-    it("has instance properties - built-in properties that allow you to get information about the pattern. These include:", 
+    describe("- Instance properties (page 131) are built-in properties that allow you to get information about the pattern. These include:", 
       function() {
-      RegExpInstancePropertiesExample01 = function(){
-        var pattern1 = /\[bc\]at/i;
-        
-        // alert(pattern1.global);     //false
-        // alert(pattern1.ignoreCase); //true
-        // alert(pattern1.multiline);  //false
-        // alert(pattern1.lastIndex);  //0
-        // alert(pattern1.source);     //"\[bc\]at"
+        it(" - global - a bool indicating whether a g flag has been set", 
+          function(){
+          RegExpInstancePropertiesExample01 = function(){
+            var pattern1 = /\[bc\]at/i;
+            
+            // alert(pattern1.global);     //false
+            // alert(pattern1.ignoreCase); //true
+            // alert(pattern1.multiline);  //false
+            // alert(pattern1.lastIndex);  //0
+            // alert(pattern1.source);     //"\[bc\]at"
 
-        var pattern2 = new RegExp("\\[bc\\]at", "i");
-        
-        // alert(pattern2.global);     //false
-        // alert(pattern2.ignoreCase); //true
-        // alert(pattern2.multiline);  //false
-        // alert(pattern2.lastIndex);  //0
-        return(pattern2.source);     //"\[bc\]at"
-      };
-    expect(RegExpInstancePropertiesExample01()).toEqual("\\[bc\\]at");
+            var pattern2 = new RegExp("\\[bc\\]at", "i");
+            
+            // alert(pattern2.global);     //false
+            // alert(pattern2.ignoreCase); //true
+            // alert(pattern2.multiline);  //false
+            // alert(pattern2.lastIndex);  //0
+            return(pattern2.source);     //"\[bc\]at"
+        };
+          expect(true).toBe(true);
+          expect(false).toBe(false);
+          expect(RegExpInstancePropertiesExample01()).toEqual("\\[bc\\]at");
+      });
+    it(" - ignoreCase - a bool indicating whether the i flag has been set");
+    it(" - multiline - a bool indicating whether the m flag has been set");
+    it(" - lastIndex - an integer indicating the character position where the next match will be attempted (always 0 to begin)");
+    it(" - source - the string source of the regular expression.");
     });
     
-    it("global - a bool indicating whether a g flag has been set");
-    it("ignoreCase - a bool indicating whether the i flag has been set");
-    it("multiline - a bool indicating whether the m flag has been set");
-    it("lastIndex - an integer indicating the character position where the next match will be attempted (always 0 to begin)");
-    it("source - the string source of the regular expression.");
-  });
-    
-  describe("page 132 - Regex instance methods", function(){
+    describe("- Instance methods (page 132)", function(){
 
-  });
-  //   describe("instance methods", function() {
-  //   });
+      it("include exec() which is intended for use with capturing groups.",
+        function(){
+        RegExpExecExample01 = function(){
+          var text = "mom and dad and baby";
+          
+          var pattern = /mom( and dad( and baby)?)?/gi;
+          var matches = pattern.exec(text);
+          
+          // alert(matches.index);    //0
+          // alert(matches.input);    //"mom and dad and baby"
+          // alert(matches[0]);       //"mom and dad and baby"
+          // alert(matches[1]);       //" and dad and baby"
+          return(matches[2]);       //" and baby"
+        };
+        expect(RegExpExecExample01()).toEqual(" and baby");
+      });
+
+      it("include an option to pass a global flag with a call to exec, which results in each subsequent call returning the next match in the string until the end of the string is reached.",
+        function(){
+        RegExpExecExample02 = function(){
+          var text = "cat, bat, sat, fat";        
+          var pattern1 = /.at/;
+          
+          var matches = pattern1.exec(text);        
+          // alert(matches.index);    //0
+          // alert(matches[0]);       //"cat"
+          // alert(pattern1.lastIndex);//0
+
+          matches = pattern1.exec(text);        
+          // alert(matches.index);    //0
+          // alert(matches[0]);       //"cat"
+          // alert(pattern1.lastIndex);//0
+
+          var pattern2 = /.at/g;
+          
+          var matches = pattern2.exec(text);        
+          // alert(matches.index);    //0
+          // alert(matches[0]);       //"cat"
+          // alert(pattern2.lastIndex);//0
+
+          matches = pattern2.exec(text);        
+          // alert(matches.index);    //5
+          // alert(matches[0]);       //"bat"
+          return(pattern2.lastIndex);//0
+        };
+        expect(RegExpExecExample02()).toEqual(8);
+// no idea why this is 8 here...
+      });
+      
+      it("include test(), which accepts a string argument and returns true if the pattern matches the argument. Useful for when you want to know if a pattern is matched but do not want to return the string itself.",
+        function(){
+        RegExpTestExample01 = function(){
+          var text = "cat, bat, sat, fat";        
+          var pattern = /.at/;
+          
+          if (pattern.test(text)){
+              return("The pattern was matched.");
+        };
+        expect(RegExpTestExample01()).toContain("The pattern");
+        };
+      });
+    });
     
-  //   describe("constructor properties", function() {
-  //   });
-  // });
-  
+    describe("- Constructor Properties (page 134)", function(){
+      it("each have a verbose and short name.",
+        function(){
+        RegExpConstructorPropertiesExample01 = function(){
+          var text = "this has been a short summer";
+          var pattern = /(.)hort/g;
+          
+          /*
+           * Note: Opera doesn't support input, lastMatch, lastParen, or multiline.
+           * Internet Explorer doesn't support multiline.
+           */        
+          if (pattern.test(text)){
+              // alert(RegExp.input);               //this has been a short summer
+              // alert(RegExp.leftContext);         //this has been a            
+              // alert(RegExp.rightContext);        // summer
+              // alert(RegExp.lastMatch);           //short
+              // alert(RegExp.lastParen);           //s
+              return(RegExp.multiline);           //false
+          }
+        };
+        expect(RegExpConstructorPropertiesExample01()).toBe(false);
+      });
+
+      it("can store up to nine capturing-group matches, accessed via RegExp.$1-$9",
+        function(){
+        RegExpConstructorPropertiesExample03 = function(){
+          var text = "this has been a short summer";
+          var pattern = /(..)or(.)/g;
+                
+          if (pattern.test(text)){
+              // alert(RegExp.$1);       //sh
+              return(RegExp.$2);       //t
+          };
+        };
+        expect(RegExpConstructorPropertiesExample03()).toEqual("t");
+      });
+    });
+  });
+
+  describe("page 136 - the Function type", function(){
+    
+    it("allows you to have multiple names for a single function",
+      function(){
+      FunctionTypeExample01 = function(){
+        function sum(num1, num2){
+            return num1 + num2;
+        }        
+        // alert(sum(10,10));    //20
+        
+        var anotherSum = sum;        
+        // alert(anotherSum(10,10));  //20
+        
+        sum = null;        
+        return(anotherSum(10,10));  //20
+      };
+      expect(FunctionTypeExample01()).toEqual(20);
+    });
+
+    describe("declarations vs expressions (page 138)", function(){
+
+      it("- function declarations are read and added to the execution context before the code begins running.",
+        function(){
+        FunctionDeclarationExample01 = function(){
+          return(sum(10,10));    //20
+      
+          function sum(num1, num2){
+              return num1 + num2;
+          }
+        };
+        expect(FunctionDeclarationExample01()).toEqual(20);
+      });
+
+      it("- function expressions are considered part of a variable initialization statement rather than a function declaration and hence are not hoisted to the top of the source tree.",
+        function(){
+        FunctionInitializationExample01 = function(){
+          alert(sum(10,10));    //causes an error
+      
+          var sum = function(num1, num2){
+              return num1 + num2;
+          };
+
+        };
+        var errorMessage;
+
+        try{
+          sum();
+        }catch(e){
+          errorMessage = e.message;
+        }
+        expect(errorMessage).toContain("sum");
+      });
+    });
+  });
+});
+
+  // FunctionAsAnArgumentExample01 = function(){
+  //       function callSomeFunction(someFunction, someArgument){
+  //         return someFunction(someArgument);
+  //       }
+
+  //       function add10(num){
+  //           return num + 10;
+  //       }
+        
+  //       var result1 = callSomeFunction(add10, 10);
+  //       // alert(result1);   //20
+        
+  //       function getGreeting(name){
+  //           return "Hello, " + name;
+  //       }
+        
+  //       var result2 = callSomeFunction(getGreeting, "Nicholas");
+  //       return(result2);   //Hello, Nicholas
+  //     };
+  //     expect(true).toBe(true);
+  //     });
+
+
+
   // describe("page 136 - the Function type", function() {
   //   describe("overloading", function() {
   //   });
@@ -540,4 +716,4 @@ describe("Chapter 5 Specs - Reference Types", function(){
   //   describe("math object", function() {
   //   });
   // });
-});
+
