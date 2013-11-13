@@ -654,66 +654,532 @@ describe("Chapter 5 Specs - Reference Types", function(){
         expect(errorMessage).toContain("sum");
       });
     });
+
+    describe("functions as values (page 139)", function(){
+
+      it("- allows a function to be used in any place any other value can be used.",
+        function(){
+        FunctionAsAnArgumentExample01 = function(){
+          function callSomeFunction(someFunction, someArgument){
+            return someFunction(someArgument);
+          }
+
+          function add10(num){
+              return num + 10;
+          }
+          
+          var result1 = callSomeFunction(add10, 10);
+          // alert(result1);   //20
+          
+          function getGreeting(name){
+              return "Hello, " + name;
+          }
+          
+          var result2 = callSomeFunction(getGreeting, "Nicholas");
+          return(result2);   //Hello, Nicholas
+        };
+        expect(true).toBe(true);
+      });
+    });
+
+    describe("function internals (page 141)", function(){
+
+      it("- functions contain two special objects: arguments, and this. The arguments object has a property, callee, which is a pointer to the function that owns the arguments object.",
+        function(){
+        FunctionTypeArgumentsExample01 = function(){
+          function factorial(num){
+              if (num <= 1) {
+                  return 1;
+              } else {
+                  return num * arguments.callee(num-1)
+              }
+          }
+
+          var trueFactorial = factorial;
+          
+          factorial = function(){
+              return 0;
+          };
+          
+          // alert(trueFactorial(5));   //120
+          return(factorial(5));       //0
+        };
+        expect(FunctionTypeArgumentsExample01()).toEqual(0);
+      });
+
+      it("- the this object is a reference to the context object that the function is operating on. In this case, the window object, then the 'o' object.",
+        function(){
+        FunctionTypeThisExample01 = function(){
+          window.color = "red";
+          var o = { color: "blue" };
+          
+          function sayColor(){
+              return(this.color);
+          }
+          
+          sayColor();     //red
+          
+          o.sayColor = sayColor;
+          return o.sayColor();   //blue
+        };
+        expect(FunctionTypeThisExample01()).toBe("blue");
+      });
+
+      it("- the caller property contains a reference to the function that called this function.",
+        function(){
+        FunctionTypeArgumentsCallerExample01 = function(){
+          function outer(){
+              inner();
+          }
+          
+          function inner(){
+              return(inner.caller);
+          }
+          
+          outer();
+        };
+        expect(FunctionTypeArgumentsCallerExample01()).toBeUndefined();
+      });
+
+      it("- for a looser coupling, you can access the function caller via arguments.callee.caller.",
+        function(){
+        FunctionTypeArgumentsCallerExample02 = function(){  
+         function outer(){
+              inner();
+          }
+          
+          function inner(){
+              return(arguments.callee.caller);
+          }
+          
+          outer();
+        };
+        expect(FunctionTypeArgumentsCallerExample02()).toEqual();
+      });
+    });
+
+    describe("function properties and methods (page 143)", function(){
+
+      it("- include a length property that indicates the number of named arguments that the function expects.",
+        function(){
+        FunctionTypeLengthPropertyExample01 = function(){
+          function sayName(name){
+              // alert(name);
+          }      
+          
+          function sum(num1, num2){
+              return num1 + num2;
+          }
+          
+          function sayHi(){
+              // alert("hi");
+          }
+          
+          // alert(sayName.length);  //1
+          // alert(sum.length);      //2
+          return(sayHi.length);    //0
+        };
+        expect(FunctionTypeLengthPropertyExample01()).toEqual(0);
+      });
+
+      it("- include an an apply() method that takes two arguments: the value of 'this' inside the function, and an array of arguments. It also allows you to substitute the array with the arguments object.",
+        function(){
+        FunctionTypeApplyMethodExample01 = function(){
+          function sum(num1, num2){
+              return num1 + num2;
+          }
+          
+          function callSum1(num1, num2){
+              return sum.apply(this, arguments);
+          }
+          
+          function callSum2(num1, num2){
+              return sum.apply(this, [num1, num2]);
+          }
+          
+          // alert(callSum1(10,10));   //20
+          return(callSum2(10,10));   //20
+        };
+        expect(FunctionTypeApplyMethodExample01()).toEqual(20);
+      });
+
+      it("- include a call() method that behaves similarly to apply() but takes different arguments. The first arg is the 'this' value, but the remaining arguments are passed directly into the function.",
+        function(){
+        FunctionTypeCallMethodExample01 = function(){
+          function sum(num1, num2){
+              return num1 + num2;
+          }
+          
+          function callSum(num1, num2){
+              return sum.call(this, num1, num2);
+          }
+          
+          return(callSum(10,10));   //20
+        };
+        expect(FunctionTypeCallMethodExample01()).toEqual(20);
+      });
+
+      it("- these methods are particularly useful for augmenting the 'this' value inside of the function.",
+        function(){
+        FunctionTypeCallExample01 = function(){
+          window.color = "red";
+          var o = { color: "blue" };
+          
+          function sayColor(){
+              alert(this.color);
+          }
+          
+          sayColor();            //red - acts on the global scope (window)
+          
+          sayColor.call(this);   //red - acts on the global scope (window)
+          sayColor.call(window); //red - still on the global scope
+          sayColor.call(o);      //blue - defines its own scope
+        };
+      });
+
+      it("- includes a bind() method that creates a new function instance whose 'this' value is bound to the value that was passed into bind.",
+        function(){
+        FunctionTypeBindMethodExample01 = function(){
+          window.color = "red";
+          var o = { color: "blue" };
+                             
+          function sayColor(){
+              return(this.color);
+          }
+          var objectSayColor = sayColor.bind(o);
+          objectSayColor();   //blue
+        };
+      });
+    });
+  });
+  
+  describe("page 146 - Primitive Wrapper Types", function(){
+
+    it("are different from reference types namely in the lifetime of the object. They only exist for one line of code before being destroyed. Given their limitations, they can be useful for manipulating primitive values.", function(){
+    });
+
+    describe("the Boolean type (page 148)", function(){
+
+      it("Boolean objects can act unpredictably when used with Boolean expressions and really shouldn't ever be used.",
+        function(){
+        BooleanTypeExample01 = function(){
+          var falseObject = new Boolean(false);
+          var result = falseObject && true;
+          // alert(result);  //true
+
+          var falseValue = false;
+          result = falseValue && true;
+          // alert(result);  //false
+          
+          // alert(typeof falseObject);   //object
+          // alert(typeof falseValue);    //boolean
+          // alert(falseObject instanceof Boolean);  //true
+          return(falseValue instanceof Boolean);   //false
+        };
+        expect(BooleanTypeExample01()).toEqual(false);
+      });
+    });
+
+    describe("the Number type (page 149)", function(){
+
+      beforeEach(function(){
+        NumberTypeExample01 = function(){
+          numberObject = new Number(10);
+          numberValue = 99;
+          
+          //toString() using a radix
+          console.log(numberObject.toString());       //"10"
+          console.log(numberObject.toString(2));      //"1010"
+          console.log(numberObject.toString(8));      //"12"
+          console.log(numberObject.toString(10));     //"10"
+          console.log(numberObject.toString(16));     //"a"
+          
+          //toFixed()
+          console.log(numberObject.toFixed(2));    //outputs "10.00"
+
+          numberObject = new Number(99);
+          console.log(numberObject.toPrecision(1));    //"1e+2"
+          console.log(numberObject.toPrecision(2));    //"99"
+          console.log(numberObject.toPrecision(3));    //"99.0"
+             
+          console.log(typeof numberObject);   //object
+          console.log(typeof numberValue);    //number
+          console.log(numberObject instanceof Number);  //true
+          return(numberValue instanceof Number);   //false
+        };
+      });
+
+      it("- overrides valueOf(), toLocaleString(), and toString().",
+        function(){
+        expect(NumberTypeExample01()).toEqual(false);
+      });
+      
+      it("- includes a toFixed() method that returns a string representation of a number with a specified number of decimal points.", function(){
+        expect(numberObject.toFixed(2)).toEqual("99.00");
+      });
+
+      it("- includes a toPrecision() method that returns either the fixed or the exponential representation of a number depending on which makes the most sense. It takes one argument, the number of digits to use to represent the number.", function(){
+        expect(numberObject.toPrecision(3)).toEqual("99.0");
+      });
+    });
+
+    describe("the String type (page 151)", function(){
+
+      it("is the object representation for strings and is created using the string constructor.",
+        function(){
+        StringTypeExample01 = function(){
+          var stringObject = new String("hello world");
+          var stringValue = "hello world";
+          
+          // alert(typeof stringObject);   //"object"
+          // alert(typeof stringValue);    //"string"
+          // alert(stringObject instanceof String);  //true
+          return(stringValue instanceof String);   //false
+        };
+        expect(StringTypeExample01()).toEqual(false);
+      });
+
+      it("has a variety of manipulation methods that return a primitive string value as the result while leaving the original string unchanged.",
+        function(){
+        StringTypeManipulationMethodsExample01 = function(){
+          var stringValue = "hello world";
+          console.log(stringValue.slice(3));        //"lo world"
+          console.log(stringValue.substring(3));    //"lo world"
+          console.log(stringValue.substr(3));       //"lo world"
+          console.log(stringValue.slice(3, 7));     //"lo w"
+          console.log(stringValue.substring(3,7));  //"lo w"
+          console.log(stringValue.substr(3, 7));    //"lo worl"
+          
+          console.log(stringValue.slice(-3));         //"rld"
+          console.log(stringValue.substring(-3));     //"hello world"
+          console.log(stringValue.substr(-3));        //"rld"
+          console.log(stringValue.slice(3, -4));      //"lo w"
+          console.log(stringValue.substring(3, -4));  //"hel"
+          return(stringValue.substr(3, -4));     //"" (empty string)
+        };
+        expect(StringTypeManipulationMethodsExample01()).toEqual("");
+      });
+
+      it("has location methods indexOf() and lastIndexOf() that allow you locate substrings within another string - both return '-1' if the substring isn't found.",
+        function(){
+        StringTypeLocationMethodsExample01 = function(){
+          var stringValue = "hello world";
+          console.log(stringValue.indexOf("o"));         //4
+          console.log(stringValue.lastIndexOf("o"));     //7
+          console.log(stringValue.indexOf("o", 6));         //7
+          return(stringValue.lastIndexOf("o", 6));     //4
+        };
+        expect(StringTypeLocationMethodsExample01()).toEqual(4);  
+      });
+
+      it("has location methods that when paired with a loop, allows you to locate all instances of a substring.",
+        function(){
+        StringTypeLocationMethodsExample02 = function(){
+          var stringValue = "Lorem ipsum dolor sit amet, consectetur adipisicing elit";
+          var positions = new Array();
+          var pos = stringValue.indexOf("e");
+          
+          while(pos > -1){
+              positions.push(pos);
+              pos = stringValue.indexOf("e", pos + 1);
+          }
+              
+          return(positions);    //"3,24,32,35,52"
+        };
+        expect(StringTypeLocationMethodsExample02()).toEqual([3,24,32,35,52]);
+      });
+
+      it("has a trim() method that removes leading and trailing white space",
+        function(){
+      });
+
+      it("has toUpperCase() and toLowerCase() case conversion methods.",
+        function(){
+      })
+
+      it("has several pattern matching methods including match(), search(), and replace()",
+        function(){
+        StringTypePatternMatchingExample01 = function(){
+          var text = "cat, bat, sat, fat"; 
+          var pattern = /.at/;
+          
+          var matches = text.match(pattern);        
+          console.log(matches.index);        //0
+          console.log(matches[0]);           //"cat"
+          console.log(pattern.lastIndex);    //0
+
+          var pos = text.search(/at/);
+          console.log(pos);   //1
+
+          var result = text.replace("at", "ond");
+          console.log(result);    //"cond, bat, sat, fat"
+
+          result = text.replace(/at/g, "ond");
+          console.log(result);    //"cond, bond, sond, fond"
+
+          result = text.replace(/(.at)/g, "word ($1)");
+          console.log(result);    //word (cat), word (bat), word (sat), word (fat)
+          
+          function htmlEscape(text){
+              return text.replace(/[<>"&]/g, function(match, pos, originalText){
+                  switch(match){
+                      case "<":
+                          return "&lt;";
+                      case ">":
+                          return "&gt;";
+                      case "&":
+                          return "&amp;";
+                      case "\"":
+                          return "&quot;";
+                  }             
+              });
+          }
+          
+          return(htmlEscape("<p class=\"greeting\">Hello world!</p>")); //&lt;p class=&quot;greeting&quot;&gt;Hello world!&lt;/p&gt;
+
+          var colorText = "red,blue,green,yellow";
+          var colors1 = colorText.split(",");      //["red", "blue", "green", "yellow"]
+          var colors2 = colorText.split(",", 2);   //["red", "blue"]
+          var colors3 = colorText.split(/[^\,]+/); //["", ",", ",", ",", ""]
+        };
+        expect(StringTypePatternMatchingExample01()).toEqual("&lt;p class=&quot;greeting&quot;&gt;Hello world!&lt;/p&gt;");
+      });
+
+      it("has a localeCompare() method which compares one string to another and returns one of three values: positive, negative, or zero.",
+        function(){
+        StringTypeLocaleCompareExample01 = function(){
+          var stringValue = "yellow";       
+          console.log(stringValue.localeCompare("brick"));  //1
+          console.log(stringValue.localeCompare("yellow")); //0
+          console.log(stringValue.localeCompare("zoo"));    //-1
+          
+          //preferred technique for using localeCompare()
+          function determineOrder(value) {
+              var result = stringValue.localeCompare(value);
+              if (result < 0){
+                  return("The string 'yellow' comes before the string '" + value + "'.");
+              } else if (result > 0) {
+                  return("The string 'yellow' comes after the string '" + value + "'.");
+              } else {
+                  return("The string 'yellow' is equal to the string '" + value + "'.");
+              }
+          }
+          
+          determineOrder("brick");
+          determineOrder("yellow");
+          return determineOrder("zoo");
+        };
+        expect(StringTypeLocaleCompareExample01()).toEqual("The string 'yellow' comes before the string 'zoo'.");
+      });
+    });
+
+    describe("page 161 - Singleton Built-in Object", function(){
+
+      it("includes the Global and Math object.", function(){
+
+      });
+
+      describe("the Global Object (page 162)", function() {
+      
+        it("- includes URI-Encoding Methods which encodes Uniform Resource Identifiers so that browsers can accept and understand them.",
+          function(){
+          GlobalObjectURIEncodingExample01 = function(){
+            var uri = "http://www.wrox.com/illegal value.htm#start";
+            
+            //"http://www.wrox.com/illegal%20value.htm#start"
+            console.log(encodeURI(uri));
+            
+            //"http%3A%2F%2Fwww.wrox.com%2Fillegal%20value.htm%23start"
+            return(encodeURIComponent(uri));
+          };
+          expect(GlobalObjectURIEncodingExample01()).toEqual('http%3A%2F%2Fwww.wrox.com%2Fillegal%20value.htm%23start');
+        });
+
+        it("- generally speaking you use encodeURIComponent() more frequently than encodeURI() because it's more commin to encode query string arguments separately from the base URI.", function(){
+        });
+
+        it("- there is a decodeURI() and decodeURIComponent() that undo the above methods.",
+          function(){
+          GlobalObjectURIDecodingExample01 = function(){
+            var uri = "http%3A%2F%2Fwww.wrox.com%2Fillegal%20value.htm%23start";
+            
+            //http%3A%2F%2Fwww.wrox.com%2Fillegal value.htm%23start
+            console.log(decodeURI(uri));
+            
+            //http://www.wrox.com/illegal value.htm#start
+            return(decodeURIComponent(uri));
+          };
+          expect(GlobalObjectURIDecodingExample01()).toEqual('http://www.wrox.com/illegal value.htm#start');
+        });
+      });
+      
+      describe("the Window Object (page 165)", function(){
+
+        it("is a vehicle for variables and functions declared in the global scope.",
+          function(){
+          GlobalObjectWindowExample01 = function(){
+            var color = "red";
+            
+            function sayColor(){
+                return(window.color);
+            }
+            
+            window.sayColor();  //"red"
+          };
+        });
+      });
+
+      describe("the Math Object (page 166)", function(){
+
+        it("- has several properties including logarithms, PI, and square roots.");
+
+        it("- has a min() and max() method that determine the largest and smallest numbers in a group.",
+          function(){
+          MathoObjectMinMaxExample01 = function(){
+            var max = Math.max(3, 54, 32, 16);
+            console.log(max);    //54
+            
+            var min = Math.min(3, 54, 32, 16);
+            return(min);    //3
+          };
+          expect(MathoObjectMinMaxExample01()).toEqual(3);
+        });
+
+        it("- has a group of rounding methods including Math.ceil() which rounds up, Math.floor() which rounds down, and Math.round() which rounds the way you think it will.",
+          function(){
+          MathObjectRoundingExample01 = function(){
+            console.log(Math.ceil(25.9));     //26
+            console.log(Math.ceil(25.5));     //26
+            console.log(Math.ceil(25.1));     //26
+            
+            console.log(Math.round(25.9));    //26
+            console.log(Math.round(25.5));    //26
+            console.log(Math.round(25.1));    //25
+                    
+            console.log(Math.floor(25.9));    //25
+            console.log(Math.floor(25.5));    //25
+            return(Math.floor(25.1));    //25
+          };
+          expect(MathObjectRoundingExample01()).toEqual(25);
+        });
+
+        it("- has a random() method which returns a random number",
+          function(){
+          MathObjectRandomExample01 = function(){
+            var num = Math.floor(Math.random() * 10 + 1);
+            return(num);    //a number between 1 and 10
+          };
+        });
+
+        it("- has a function selectFrom() that accepts two args, the lowest value that should be returned, and the highest value that should be returned. This makes it easy to select a random item from an array of choices.",
+          function(){
+          MathObjectRandomExample03 = function(){
+           var colors = ["red", "green", "blue", "yellow", "black", "purple", "brown"];
+            var color = colors[selectFrom(0, colors.length-1)];
+            return(color);  //any of the strings in the array
+          };
+        });
+      });
+    });  
   });
 });
-
-  // FunctionAsAnArgumentExample01 = function(){
-  //       function callSomeFunction(someFunction, someArgument){
-  //         return someFunction(someArgument);
-  //       }
-
-  //       function add10(num){
-  //           return num + 10;
-  //       }
-        
-  //       var result1 = callSomeFunction(add10, 10);
-  //       // alert(result1);   //20
-        
-  //       function getGreeting(name){
-  //           return "Hello, " + name;
-  //       }
-        
-  //       var result2 = callSomeFunction(getGreeting, "Nicholas");
-  //       return(result2);   //Hello, Nicholas
-  //     };
-  //     expect(true).toBe(true);
-  //     });
-
-
-
-  // describe("page 136 - the Function type", function() {
-  //   describe("overloading", function() {
-  //   });
-    
-  //   describe("declarations vs expressions", function() {
-  //   });
-    
-  //   describe("functions as values", function() {
-  //   });
-    
-  //   describe("function properties", function() {
-  //   });
-    
-  //   describe("function methods", function() {
-  //   });
-  // });
-  
-  // describe("page 146 - Primative Wrapper Types", function() {
-  //   describe("boolean type", function() {
-  //   });
-    
-  //   describe("number type", function() {
-  //   });
-    
-  //   describe("string type", function() {
-  //   });
-  // });
-  
-  // describe("page 161 - Singleton Built-in Object", function() {
-  //   describe("global object", function() {
-  //   });  
-    
-  //   describe("math object", function() {
-  //   });
-  // });
-
