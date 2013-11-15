@@ -32,7 +32,7 @@ module.exports = function(grunt){
   grunt.loadNpmTasks('grunt-contrib-jshint');
   
   grunt.registerTask("test", ["default"]);
-  grunt.registerTask("default", ["jasmine", "jshint:professional_javascript"]);
+  grunt.registerTask("default", ["jasmine"]);
 };
 
 
