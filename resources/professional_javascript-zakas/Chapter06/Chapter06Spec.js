@@ -969,7 +969,7 @@ describe("Chapter 6 Specs - Object Oriented Programming", function(){
                 PrototypeChainingExample03();
             } catch(e) {
                 errorMessage = e.message;
-            };
+            }
             expect(errorMessage).not.toBeNull();
           });
 
