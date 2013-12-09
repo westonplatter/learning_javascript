@@ -371,5 +371,119 @@ describe("Chapter 7 Specs", function() {
 	    expect(PrivilegedMethodExample02()).toEqual("Michael");
 	  });
 	});
+
+  describe("The Module Pattern", function() {
+    
+    it("creates private variables and privileged methods for singletons. Singletons are created in JS using object literal notation.", function() {
+      ExampleFunction = function() {
+      // Basic Syntax:
+      // var singleton = function() {
+      //
+      //  //private variables and functions
+      // var privateVariable = 10;
+
+      // function privateFunction() {
+      //   return false;
+      // }
+      // 
+      //  //privileged/public methods and properties
+      // return {
+      //
+      //  publicProperty: true,
+
+      //  publicMethod : function() {
+      //   privateVariable++;
+      //   return privateFunction();
+      // }
+      // 
+      // };
+      //
+      // }();
+      // This uses an anonymous function that returns an object. Private variables and functions are defined first. Then an object literal is returned as the function value. The object literal contains the methods and values that should be public. Since the object is defined inside the anonymous function, all of the public methods have access to the private variables and functions. Essentially, the object literal defines the public interface for the singleton. 
+      };
+    });
+    
+    it("is useful when a singleton requires some sort of initialization and access to private variables.", function() {
+      ModulePatternExample01 = function() {
+        function BaseComponent(){
+        }
+        
+        function OtherComponent(){
+        }
+    
+        var application = function(){
+        //The application object manages components.
+        
+          //private variables and functions
+          var components = new Array();
+        
+          //initialization (new instance of base component is added to components array)
+          components.push(new BaseComponent());
+      
+          //public interface (these are privileged methods with access to the components array)
+          return {
+            getComponentCount : function(){
+              return components.length;
+            },
+    
+            registerComponent : function(component){
+              if (typeof component == "object"){
+                components.push(component);
+              }
+            }
+          };
+        }();
+
+        application.registerComponent(new OtherComponent());
+        return(application.getComponentCount());  //2
+        //
+      }
+      expect(ModulePatternExample01()).toEqual(2);
+    });
+  });
+
+  describe("The Module-Augmentation Pattern", function() {
+    
+    it("is useful when the singleton object needs to be an instance of a particular type but must be augmented with additional properties and/or methods.", function() {
+      ModuleAugmentationPatternExample01 = function() {
+        function BaseComponent(){
+        }
+        
+        function OtherComponent(){
+        }
+    
+        var application = function(){
+        
+          //private variables and functions are defined first
+          var components = new Array();
+      
+          //initialization
+          components.push(new BaseComponent());
+      
+          //create a local copy of application. This is the local version of what will become the application object.
+          var app = new BaseComponent();
+      
+          //public interface
+          app.getComponentCount = function(){
+            return components.length;
+          };
+      
+          app.registerComponent = function(component){
+            if (typeof component == "object"){
+              components.push(component);
+            }
+          };
+        
+          //return it
+          return app;
+        }();
+
+        console.log(application instanceof BaseComponent);
+        application.registerComponent(new OtherComponent());
+        return(application.getComponentCount());  //2
+      };
+      expect(ModuleAugmentationPatternExample01()).toEqual(2);
+    });
+  });
 });
 
