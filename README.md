@@ -12,9 +12,9 @@ __Longer Answer:__ This is a compilation of Javascript "code snippets" as I work
 <br>
 
 #### Resources
-- [code](tree/master/resources/professional_javascript-zakas)   -    [Professional Javascript for Web Developers](http://www.amazon.com/Professional-JavaScript-Developers-Nicholas-Zakas/dp/1118026691) by Nicholas Zakas
-- [code](/tree/master/resources/javascript_patterns-stefanov)   -    [Javascript Patterns](http://www.amazon.com/JavaScript-Patterns-Stoyan-Stefanov/dp/0596806752) by Stoyan Stefanov
-- [code](/tree/master/resources/javascript_patterns-osmani)     -    [Javascript Patterns](http://addyosmani.com/resources/essentialjsdesignpatterns/book/) by Addy Osmani
+- [code](/resources/professional_javascript-zakas)  -    [Professional Javascript for Web Developers](http://www.amazon.com/Professional-JavaScript-Developers-Nicholas-Zakas/dp/1118026691) by Nicholas Zakas
+- [code](/resources/javascript_patterns-stefanov)   -    [Javascript Patterns](http://www.amazon.com/JavaScript-Patterns-Stoyan-Stefanov/dp/0596806752) by Stoyan Stefanov
+- [code](/resources/javascript_patterns-osmani)     -    [Javascript Patterns](http://addyosmani.com/resources/essentialjsdesignpatterns/book/) by Addy Osmani
 
 <br>
 
