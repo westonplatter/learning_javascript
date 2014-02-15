@@ -6,3 +6,10 @@ node_js:
 
 before_script:
   - npm install -g grunt-cli
+
+# use the default test execution script
+# 
+#     script: npm tes
+# 
+# More info about Travis CI for node projects, 
+# http://docs.travis-ci.com/user/languages/javascript-with-nodejs/#Default-Test-Script

@@ -9,12 +9,20 @@ __Short Answer:__  Learn javascript by proving concepts with tests. :)
 
 __Longer Answer:__ This is a compilation of Javascript "code snippets" as I work through resources to master Javascript. Each resource (book/guide/tutorial/etc) has it's own folder with [Jasmine](http://pivotal.github.io/jasmine/) tests proving how the concepts apply in a semi real world context.
 
+<br>
+
+#### Resources
+- [code](tree/master/resources/professional_javascript-zakas)   -    [Professional Javascript for Web Developers](http://www.amazon.com/Professional-JavaScript-Developers-Nicholas-Zakas/dp/1118026691) by Nicholas Zakas
+- [code](/tree/master/resources/javascript_patterns-stefanov)   -    [Javascript Patterns](http://www.amazon.com/JavaScript-Patterns-Stoyan-Stefanov/dp/0596806752) by Stoyan Stefanov
+- [code](/tree/master/resources/javascript_patterns-osmani)     -    [Javascript Patterns](http://addyosmani.com/resources/essentialjsdesignpatterns/book/) by Addy Osmani
+
+<br>
+
+
 #### How to install and use
 
 ##### Option 1 - Run tests in browswer
 Download the project ([click here](https://github.com/denvercodeclub/learning_javascript/archive/master.zip)). Open the zip file, and find the  `learning_javascript/resources/professional_javascript-zakas/SpecRunner.html`  file, and double click on it. This runs the tests in your browser. Yay!! You're up and running.  
-
-
 
 ##### Option 2 - Run tests via NodeJS
 
@@ -42,13 +50,6 @@ npm test
 # using grunt
 grunt test
 ```
-
-#### Current resources:  
-- [Professional Javascript for Web Developers by Nicholas Zakas](https://github.com/westonplatter/learning_javascript/tree/master/professional_javascript-zakas)
-
-#### Planned resources:  
-- Javascript Patterns  
-- (open to ideas)
 
 #### Contributions
 
