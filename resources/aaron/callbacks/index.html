@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="UTF-8">
+  <title>Callbacks</title>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js"></script>
+
+  <script type="text/javascript">
+
+    $(document).on('ready', function(){
+
+      $('.abc').on('click', function(e){
+        alert('executed callback - option 1')
+      });
+
+      $('.xyz').click(function(e){
+        e.preventDefault();
+
+        $.ajax({
+          type: "GET", 
+          url: "https://twitter.com/rands.json", 
+          success: function(data, status, xhr){
+            console.log(data);
+          }, 
+          beforeSend: function(){
+            confirm("Press a button!");
+          }
+
+        });
+      });
+
+    });
+  </script>
+  </head>
+    
+  <body>
+    <p>
+      <a class="abc" href="">First Callback</a>
+    </p>
+
+    <p>
+      <a class="xyz" href="">Second Callback</a>
+    </p>
+  </body>
+
+</html>
