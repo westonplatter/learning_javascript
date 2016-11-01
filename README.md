@@ -7,7 +7,7 @@ learning_javascript
 
 __Short Answer:__  Learn javascript by proving concepts with tests. :)
 
-__Longer Answer:__ This is a compilation of Javascript "code snippets" as I work through resources to master Javascript. Each resource (book/guide/tutorial/etc) has it's own folder with [Jasmine](http://pivotal.github.io/jasmine/) tests proving how the concepts apply in a semi real world context.
+__Longer Answer:__ This is a compilation of Javascript "code snippets" as I work through resources to master Javascript. Each resource (book/guide/tutorial/etc) has it's own folder with [Jasmine](http://jasmine.github.io/) tests proving how the concepts apply in a semi real world context.
 
 <br>
 
